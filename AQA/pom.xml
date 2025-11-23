@@ -5,25 +5,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>package aqa.task12;
-
-    import io.qameta.allure.Step;
-
-    public class LoginBO {
-
-    private final LoginPageObject page;
-
-    public LoginBO(WebDriver driver) {
-    this.page = new LoginPageObject(driver);
-    }
-
-    @Step("Login as user {username}")
-    public void login(String username, String password) {
-    page.enterUsername(username);
-    page.enterPassword(password);
-    page.clickLogin();
-    }
-    }
-
     <artifactId>AQA</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -161,10 +142,6 @@
             <artifactId>sikulixapi</artifactId>
             <version>2.0.5</version>
         </dependency>
-
-
-
-
 
 
     </dependencies>
