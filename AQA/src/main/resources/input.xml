@@ -1,0 +1,9 @@
+<person>
+    <name>Alice</name>
+    <age>25</age>
+    <address>
+        <city>San Francisco</city>
+        <state>CA</state>
+        <zip>94107</zip>
+    </address>
+</person>

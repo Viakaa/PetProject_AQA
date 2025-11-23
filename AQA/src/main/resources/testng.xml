@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MainTests">
+    <test name="MainTests">
+        <parameter name="CityParameter" value="XMLCity"/>
+        <parameter name="StateParameter" value="XMLState"/>
+        <classes>
+            <class name="org.example.MainTest"/>
+        </classes>
+    </test>
+</suite>

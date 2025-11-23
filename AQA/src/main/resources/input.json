@@ -1,0 +1,6 @@
+{
+  "name": "Alice",
+  "age": 25,
+  "address":
+  { "city": "San Francisco", "state": "CA", "zip": 94107 }
+}
