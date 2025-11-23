@@ -1,41 +1,44 @@
 package aqa.task14;
 
-import aqa.task11.DriverProvider;
-import aqa.task12.CheckBoxBusinessObject;
-import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
- import org.openqa.selenium.chrome.ChromeDriver;
+import aqa.DriverPool;
+import aqa.task12.LoginBO;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
 
-@Listeners({CustomListener.class, CustomAllureListener.class})
+@Listeners({CustomListener.class})
 public class Task14Test {
 
+    LoginBO loginBO;
+
     @BeforeTest
-    void setUp() {
-        ChromeDriverManager.getInstance().setup();
-        DriverProvider.driver = new ChromeDriver();
-        System.out.println("Setup done");
+    void setup() {
+        DriverPool.getDriver().get("https://www.saucedemo.com/");
+        loginBO = new LoginBO(DriverPool.getDriver());
     }
 
     @Test
-    public void test14() {
-        CheckBoxBusinessObject businessObject = new CheckBoxBusinessObject();
-        businessObject.checkBox();
+    void loginSuccessTest() {
+        loginBO.login("standard_user", "secret_sauce");
+
+        String currentUrl = DriverPool.getDriver().getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("inventory.html"),
+                "Login should be successful, but current URL: " + currentUrl);
+        System.out.println("Login successful, navigated to: " + currentUrl);
     }
 
     @Test
-    public void test14Fail() {
-        CheckBoxBusinessObject businessObject = new CheckBoxBusinessObject();
-        businessObject.checkBox();
-        Assert.fail("Test Failed Message");
+    void loginFailTest() {
+        loginBO.login("user", "secret_sauce");
+
+        String currentUrl = DriverPool.getDriver().getCurrentUrl();
+        Assert.fail("This test is intentionally failed to check fail scenario");
+        System.out.println("Login failed as expected for locked_out_user. Current URL: " + currentUrl);
     }
 
     @AfterTest
-    public void tearDown() {
+    void teardown() {
         System.out.println("Driver quit done");
-        DriverProvider.quitDriver();
+        DriverPool.quitDriver();
     }
 }

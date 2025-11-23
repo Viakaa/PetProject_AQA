@@ -2,15 +2,13 @@ package aqa.task12;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
-import org.openqa.selenium.support.pagefactory.ElementLocator;
-import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
-import org.openqa.selenium.support.pagefactory.FieldDecorator;
+import org.openqa.selenium.support.pagefactory.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
 
 public class CustomDecorator implements FieldDecorator {
+
     private final ElementLocatorFactory factory;
 
     public CustomDecorator(WebDriver driver) {
@@ -19,27 +17,28 @@ public class CustomDecorator implements FieldDecorator {
 
     @Override
     public Object decorate(ClassLoader loader, Field field) {
-        if (field.getType().isAssignableFrom(Checkbox.class)) {
-            ElementLocator locator = factory.createLocator(field);
-            if (locator == null) {
-                return null;
-            }
+        ElementLocator locator = factory.createLocator(field);
+        if (locator == null) {
+            return null;
+        }
 
+        Class<?> fieldType = field.getType();
+
+        if (Element.class.isAssignableFrom(fieldType)) {
             WebElement proxy = (WebElement) Proxy.newProxyInstance(
                     loader,
                     new Class[]{WebElement.class},
                     (proxy1, method, args) -> method.invoke(locator.findElement(), args)
             );
 
-            return new Checkbox(proxy);
+            try {
+                return fieldType.getConstructor(WebElement.class).newInstance(proxy);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
-        if (WebElement.class.isAssignableFrom(field.getType())) {
-            ElementLocator locator = factory.createLocator(field);
-            if (locator == null) {
-                return null;
-            }
-
+        if (WebElement.class.isAssignableFrom(fieldType)) {
             return Proxy.newProxyInstance(
                     loader,
                     new Class[]{WebElement.class},
@@ -49,5 +48,4 @@ public class CustomDecorator implements FieldDecorator {
 
         return null;
     }
-
 }

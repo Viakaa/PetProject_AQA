@@ -1,39 +1,41 @@
 package aqa.task12;
-//General
-//Implement PageFactory for a few pages.
-//Implement a Wrapper for common WebElements (choose your variant).
-//Implement methods for your web element with console logging. (Choose your variant with specific methods)
-//Use those methods in a simple TC scenario
-//Checkboxes:
-//check - checks a checkbox
-//uncheck - unchecks a checkbox
-//isSelected - checks if the checkbox is selected
-import aqa.task11.DriverProvider;
-import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
+
+import aqa.DriverPool;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
+import static org.testng.Assert.assertTrue;
+
 public class Task12Test {
-    WebDriver driver;
 
-    @BeforeTest
-    void setUp() {
-        ChromeDriverManager.getInstance().setup();
-        DriverProvider.driver = new ChromeDriver();
+    private WebDriver driver;
+    private WebDriverWait wait;
 
+    @BeforeMethod
+    public void setUp() {
+        driver = DriverPool.getDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.get("https://www.saucedemo.com/");
     }
 
     @Test
-    public void test12() {
-        CheckBoxBusinessObject businessObject = new CheckBoxBusinessObject();
-        businessObject.checkBox();
+    public void loginTest() {
+        LoginBO loginBO = new LoginBO(driver);
+        loginBO.login("standard_user", "secret_sauce");
+
+        // Явне очікування появи елемента на сторінці inventory
+        boolean loggedIn = wait.until(ExpectedConditions.urlContains("inventory.html"));
+        assertTrue(loggedIn, "Login failed or URL mismatch");
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
-        DriverProvider.quitDriver();
+        DriverPool.quitDriver();
     }
 }

@@ -4,25 +4,44 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>org.example</groupId>package aqa.task12;
+
+    import io.qameta.allure.Step;
+
+    public class LoginBO {
+
+    private final LoginPageObject page;
+
+    public LoginBO(WebDriver driver) {
+    this.page = new LoginPageObject(driver);
+    }
+
+    @Step("Login as user {username}")
+    public void login(String username, String password) {
+    page.enterUsername(username);
+    page.enterPassword(password);
+    page.clickLogin();
+    }
+    }
+
     <artifactId>AQA</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
-        <maven.surefire>2.22.2</maven.surefire>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.surefire>3.2.5</maven.surefire>
         <aspectj.version>1.9.22.1</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <io.appium.version>9.5.0</io.appium.version>
         <selenium.java>4.34.0</selenium.java>
         <testng.version>7.8.0</testng.version>
-        <aspectj.weaver>1.9.9.1</aspectj.weaver>
-        <guava.version>33.0.0-jre</guava.version>
+        <aspectj.weaver>1.9.9.1</aspectj.weaver><!--        appium-->
+        <guava.version>33.0.0-jre</guava.version><!--        selenium-->
         <fasterxml.version>2.16.0</fasterxml.version>
         <allure.version>2.25.0</allure.version>
-    </properties>
 
+    </properties>
 
     <dependencies>
         <dependency>
@@ -30,11 +49,7 @@
             <artifactId>json</artifactId>
             <version>20231013</version>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-            <version>2.14.2</version>
-        </dependency>
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -53,59 +68,30 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version>
         </dependency>
-
-
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.7.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.25.0</version>
-        </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.9.2</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.23.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.23.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>${allure.version}</version>
+            <version>3.0.0-beta3</version>
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.42</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>5.5.6</version>
+            <version>1.18.32</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -123,6 +109,7 @@
             <artifactId>selenium-support</artifactId>
             <version>${selenium.java}</version>
         </dependency>
+
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
@@ -176,6 +163,10 @@
         </dependency>
 
 
+
+
+
+
     </dependencies>
     <build>
         <plugins>
@@ -187,9 +178,13 @@
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                     </argLine>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
@@ -202,8 +197,15 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
 
         </plugins>
     </build>
-
 </project>
