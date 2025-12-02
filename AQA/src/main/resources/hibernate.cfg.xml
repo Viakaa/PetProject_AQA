@@ -15,8 +15,8 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.current_session_context_class">thread</property>
 
-        <mapping class="aqa.task6.User"/>
-        <mapping class="aqa.task6.Address"/>
+        <mapping class="aqa.task8.User"/>
+        <mapping class="aqa.task8.Address"/>
     </session-factory>
 </hibernate-configuration>
         C:\Users\viket\IdeaProjects\JAVA_4AT_31\java_aqa\src\main\java\aqa\task18

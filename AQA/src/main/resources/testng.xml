@@ -2,10 +2,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="MainTests">
     <test name="MainTests">
-        <parameter name="CityParameter" value="XMLCity"/>
-        <parameter name="StateParameter" value="XMLState"/>
-        <classes>
-            <class name="org.example.MainTest"/>
-        </classes>
+        <parameter name="CityParam" value="XMLCity"/>
+        <parameter name="StateParam" value="XMLState"/>
+        <classes> <class name="aqa.task6.Task6Test"/> </classes>
     </test>
 </suite>

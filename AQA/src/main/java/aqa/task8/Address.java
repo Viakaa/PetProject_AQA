@@ -1,4 +1,4 @@
-package aqa.task6;
+package aqa.task8;
 
 import java.io.Serializable;
 import javax.persistence.*;

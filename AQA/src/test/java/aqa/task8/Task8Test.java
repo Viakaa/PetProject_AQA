@@ -1,4 +1,4 @@
-package aqa.task6;
+package aqa.task8;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
