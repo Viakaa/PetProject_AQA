@@ -1,4 +1,4 @@
-package aqa.task14;
+package aqa.listeners;
 
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
@@ -6,7 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import static aqa.task11.DriverProvider.driver;
+import static aqa.DriverPool.driver;
 
 //- Add Allure to your framework
 //- Attach screenshot and DOM to the report

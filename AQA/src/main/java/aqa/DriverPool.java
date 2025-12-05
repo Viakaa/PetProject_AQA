@@ -5,7 +5,6 @@ import io.github.bonigarcia.wdm.managers.FirefoxDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import aqa.task16.ConfigReader;
 
 public class DriverPool {
     public static WebDriver driver;

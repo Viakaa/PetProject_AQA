@@ -1,4 +1,4 @@
-package aqa.task16;
+package aqa;
 
 import java.io.File;
 import java.io.FileInputStream;

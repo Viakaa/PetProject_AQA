@@ -1,4 +1,4 @@
-package aqa.task21;
+package aqa.utils;
 
 import org.sikuli.script.Screen;
 
