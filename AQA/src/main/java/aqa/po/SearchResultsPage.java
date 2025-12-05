@@ -1,28 +1,29 @@
 package aqa.po;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
+import java.time.Duration;
 
 public class SearchResultsPage {
-
     private WebDriver driver;
-    private By themeLinks = By.cssSelector("section.wccom-comp-card-theme div.wccom-card__content h3 a");
+    private WebDriverWait wait;
+
+    @FindBy(id = "firstHeading")
+    private WebElement firstHeading;
 
     public SearchResultsPage(WebDriver driver) {
         this.driver = driver;
-    }
-    public WebElement getFirstThemeElement() {
-        List<WebElement> themes = driver.findElements(themeLinks);
-        if (themes.isEmpty()) {
-            throw new RuntimeException("No themes found on search results page");
-        }
-        return themes.get(0);
+        PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void openFirstProduct() {
-        getFirstThemeElement().click();
+    public String getPageTitle() {
+        wait.until(ExpectedConditions.visibilityOf(firstHeading));
+        return firstHeading.getText();
     }
 }

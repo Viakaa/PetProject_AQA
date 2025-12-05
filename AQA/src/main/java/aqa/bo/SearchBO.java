@@ -1,17 +1,23 @@
 package aqa.bo;
 
-import aqa.po.SearchPage;
+import aqa.po.HomePage;
+import aqa.po.SearchResultsPage;
 import org.openqa.selenium.WebDriver;
 
 public class SearchBO {
-    private SearchPage searchPage;
+    private HomePage homePage;
+    private SearchResultsPage resultsPage;
 
     public SearchBO(WebDriver driver) {
-        this.searchPage = new SearchPage(driver);
+        homePage = new HomePage(driver);
+        resultsPage = new SearchResultsPage(driver);
     }
 
-    public void searchForTheme(String themeName) {
-        searchPage.enterSearchTerm(themeName);
-        searchPage.clickSearch();
+    public void searchFor(String term) {
+        homePage.searchFor(term);
+    }
+
+    public String getFirstHeading() {
+        return resultsPage.getPageTitle();
     }
 }

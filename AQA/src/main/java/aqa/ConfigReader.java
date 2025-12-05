@@ -11,7 +11,7 @@ public class ConfigReader {
 
     static {
         try {
-            properties.load(new FileInputStream(new File("C:\\Users\\viket\\IdeaProjects\\JAVA_4AT_31\\java_aqa\\src\\main\\resources\\configurationProperty").getAbsoluteFile()));
+            properties.load(new FileInputStream(new File("C:\\\\Users\\\\viket\\\\IdeaProjects\\\\PetProject_AQA\\\\AQA\\\\src\\\\main\\\\resources\\\\config.properties").getAbsoluteFile()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -20,9 +20,5 @@ public class ConfigReader {
     public static String GetProperty(String key){
 
         return properties.getProperty( key );
-    }
-
-    public static void main(String[] args) {
-        GetProperty("trelloKey");
     }
 }
