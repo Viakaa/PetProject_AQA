@@ -1,21 +1,26 @@
 package aqa.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RandomResponse {
-    public Query query;
+    private Query query;
 
+    @Getter
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Query {
-        public List<RandomItem> random;
+        private List<RandomItem> random;
     }
 
+    @Getter
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class RandomItem {
-        public int id;
-        public String title;
+        private int id;
+        private String title;
+        private int ns;
     }
 }

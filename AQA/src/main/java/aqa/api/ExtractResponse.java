@@ -1,22 +1,26 @@
 package aqa.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
 
 import java.util.Map;
 
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExtractResponse {
-    public Query query;
+    private Query query;
 
+    @Getter
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Query {
-        public Map<String, Page> pages;
+        private Map<String, Page> pages;
     }
 
+    @Getter
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Page {
-        public int pageid;
-        public String title;
-        public String extract;
+        private int pageid;
+        private String title;
+        private String extract;
     }
 }

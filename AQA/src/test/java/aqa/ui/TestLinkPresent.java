@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+@Listeners({aqa.listeners.CustomAllureListener.class, aqa.listeners.CustomListener.class})
 public class TestLinkPresent {
 
     private WebDriver driver;

@@ -6,4 +6,19 @@
         <parameter name="StateParam" value="XMLState"/>
         <classes> <class name="aqa.task6.Task6Test"/> </classes>
     </test>
+
+    <listeners>
+        <listener class-name="aqa.listeners.CustomAllureListener"/>
+        <listener class-name="aqa.listeners.CustomListener"/>
+    </listeners>
+
+    <test name="Wikipedia UI Tests">
+        <classes>
+            <class name="aqa.ui.TestSearchResultHeading"/>
+            <class name="aqa.ui.TestSearch"/>
+            <class name="aqa.ui.TestLinkPresent"/>
+        </classes>
+    </test>
 </suite>
+
+

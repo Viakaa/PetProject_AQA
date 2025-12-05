@@ -1,0 +1,104 @@
+{
+    "batchcomplete": "",
+    "continue": {
+        "sroffset": 10,
+        "continue": "-||"
+    },
+    "query": {
+        "searchinfo": {
+            "totalhits": 10945
+        },
+        "search": [
+            {
+                "ns": 0,
+                "title": "Java (programming language)",
+                "pageid": 15881,
+                "size": 75386,
+                "wordcount": 6702,
+                "snippet": "<span class=\"searchmatch\">Java</span> is a high-level, general-purpose, memory-safe, object-oriented <span class=\"searchmatch\">programming</span> language. It is intended to let programmers write once, run anywhere (WORA)",
+                "timestamp": "2025-11-26T20:29:46Z"
+            },
+            {
+                "ns": 0,
+                "title": "Java (software platform)",
+                "pageid": 4718446,
+                "size": 79093,
+                "wordcount": 8610,
+                "snippet": "pages. Writing in the <span class=\"searchmatch\">Java</span> <span class=\"searchmatch\">programming</span> language is the primary way to produce code that will be deployed as byte code in a <span class=\"searchmatch\">Java</span> virtual machine (JVM);",
+                "timestamp": "2025-12-03T20:37:41Z"
+            },
+            {
+                "ns": 0,
+                "title": "Outline of the Java programming language",
+                "pageid": 81107725,
+                "size": 12432,
+                "wordcount": 943,
+                "snippet": "<span class=\"searchmatch\">Java</span>: <span class=\"searchmatch\">Java</span> is a general-purpose, concurrent, object-oriented, class-based, strong, and statically typed <span class=\"searchmatch\">programming</span> language that is compiled to <span class=\"searchmatch\">Java</span>",
+                "timestamp": "2025-10-21T07:27:34Z"
+            },
+            {
+                "ns": 0,
+                "title": "Generics in Java",
+                "pageid": 7955681,
+                "size": 26876,
+                "wordcount": 2947,
+                "snippet": "of generic <span class=\"searchmatch\">programming</span> that were added to the <span class=\"searchmatch\">Java</span> <span class=\"searchmatch\">programming</span> language in 2004 within version J2SE 5.0. They were designed to extend <span class=\"searchmatch\">Java&#039;s</span> type system",
+                "timestamp": "2025-11-30T20:48:32Z"
+            },
+            {
+                "ns": 0,
+                "title": "Scala (programming language)",
+                "pageid": 3254510,
+                "size": 111234,
+                "wordcount": 10226,
+                "snippet": "a <span class=\"searchmatch\">programming</span> language combining ideas from functional <span class=\"searchmatch\">programming</span> and Petri nets. Odersky formerly worked on Generic <span class=\"searchmatch\">Java</span>, and javac, Sun&#039;s <span class=\"searchmatch\">Java</span> compiler",
+                "timestamp": "2025-11-11T14:30:03Z"
+            },
+            {
+                "ns": 0,
+                "title": "JavaScript",
+                "pageid": 9845,
+                "size": 86284,
+                "wordcount": 7939,
+                "snippet": "<span class=\"searchmatch\">Java</span>Script (JS) is a <span class=\"searchmatch\">programming</span> language and core technology of the Web, alongside HTML and CSS. It was created by Brendan Eich in 1995. As of 2025, the",
+                "timestamp": "2025-12-02T23:33:15Z"
+            },
+            {
+                "ns": 0,
+                "title": "Java virtual machine",
+                "pageid": 16389,
+                "size": 37868,
+                "wordcount": 4107,
+                "snippet": "A <span class=\"searchmatch\">Java</span> virtual machine (JVM) is a virtual machine that enables a computer to run <span class=\"searchmatch\">Java</span> <span class=\"searchmatch\">programs</span> as well as <span class=\"searchmatch\">programs</span> written in other languages that are",
+                "timestamp": "2025-11-30T01:51:56Z"
+            },
+            {
+                "ns": 0,
+                "title": "Encapsulation (computer programming)",
+                "pageid": 220919,
+                "size": 16411,
+                "wordcount": 1390,
+                "snippet": "similarity has been explained by <span class=\"searchmatch\">programming</span> language theorists in terms of existential types. In object-oriented <span class=\"searchmatch\">programming</span> languages, and other related",
+                "timestamp": "2025-10-17T08:49:30Z"
+            },
+            {
+                "ns": 0,
+                "title": "Java bytecode",
+                "pageid": 38321273,
+                "size": 15539,
+                "wordcount": 1714,
+                "snippet": "Wikibook Java <span class=\"searchmatch\">Programming</span> has a page on the topic of: <span class=\"searchmatch\">Java</span> bytecode Oracle&#039;s <span class=\"searchmatch\">Java</span> Virtual Machine Specification <span class=\"searchmatch\">Programming</span> Languages for the <span class=\"searchmatch\">Java</span> Virtual Machine",
+                "timestamp": "2025-08-27T19:49:47Z"
+            },
+            {
+                "ns": 0,
+                "title": "Java Platform, Micro Edition",
+                "pageid": 42870,
+                "size": 20582,
+                "wordcount": 1472,
+                "snippet": " printers). <span class=\"searchmatch\">Java</span> ME was formerly known as <span class=\"searchmatch\">Java</span> 2 Platform, Micro Edition or J2ME. The platform uses the object-oriented <span class=\"searchmatch\">Java</span> <span class=\"searchmatch\">programming</span> language, and",
+                "timestamp": "2025-12-01T16:58:25Z"
+            }
+        ]
+    }
+}

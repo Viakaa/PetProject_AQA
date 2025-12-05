@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+@Listeners({aqa.listeners.CustomAllureListener.class, aqa.listeners.CustomListener.class})
 public class TestSearch {
 
     private WebDriver driver;

@@ -1,0 +1,11 @@
+{
+  "query" : {
+    "pages" : {
+      "29090" : {
+        "pageid" : 29090,
+        "title" : "Software testing",
+        "extract" : "<p class=\"mw-empty-elt\">\n</p>\n\n\n<p><b>Software testing</b> is the act of checking whether software meets its intended objectives and satisfies expectations.\n</p><p>Software testing can provide objective, independent information about the quality of software and the risk of its failure to a user or sponsor or any other stakeholder.\n</p><p>Software testing can determine the correctness of software for specific scenarios but cannot determine correctness for all scenarios. It cannot find all bugs.\n</p><p>Based on the criteria for measuring correctness from an oracle, software testing employs principles and mechanisms that might recognize a problem. Examples of oracles include specifications, contracts, comparable products, past versions of the same product, inferences about intended or expected purpose, user or customer expectations, relevant standards, and applicable laws.\n</p><p>Software testing can be functional or non-functional in nature.\n</p><p>Software testing is often dynamic in nature; running the software to verify actual output matches expected. It can also be static in nature; reviewing code and its associated documentation.\n</p><p>Software testing is often used to answer the question: Does the software do what it is supposed to do and what it needs to do?\n</p><p>Information learned from software testing may be used to improve the process by which software is developed.\n</p><p>A commonly suggested approach to automated testing is the \"test pyramid,\" wherein most of the tests are unit tests, followed by a smaller set of integration tests and finally a few end-to-end (e2e) tests.\n</p>"
+      }
+    }
+  }
+}
