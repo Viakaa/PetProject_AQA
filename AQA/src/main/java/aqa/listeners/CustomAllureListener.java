@@ -8,10 +8,6 @@ import org.testng.ITestResult;
 
 import static aqa.DriverPool.driver;
 
-//- Add Allure to your framework
-//- Attach screenshot and DOM to the report
-//- * Record video and attach it to the report
-//- Run allure dashboard
 
 public class CustomAllureListener implements ITestListener {
     @Override

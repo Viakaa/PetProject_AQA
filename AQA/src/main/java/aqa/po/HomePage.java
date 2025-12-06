@@ -1,5 +1,6 @@
 package aqa.po;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class HomePage {
     private WebDriver driver;
@@ -20,9 +20,6 @@ public class HomePage {
 
     @FindBy(xpath = "//a[text()='browser automation']")
     private List<WebElement> links;
-
-    @FindBy(css = "#mw-normal-catlinks ul li")
-    private List<WebElement> categories;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -40,11 +37,7 @@ public class HomePage {
         searchInput.sendKeys(term);
         searchInput.submit();
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        wait.until(ExpectedConditions.titleContains(term));
     }
 
     public String getFirstHeading() {
@@ -52,18 +45,14 @@ public class HomePage {
     }
 
     public boolean isLinkPresent(String linkText) {
-        wait.until(ExpectedConditions.visibilityOfAllElements(links));
-        for (WebElement link : links) {
-            if (link.getText().equals(linkText)) {
-                link.click();
-                return true;
-            }
+        try {
+            WebElement link = wait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.xpath("//a[text()='" + linkText + "']")));
+            wait.until(ExpectedConditions.elementToBeClickable(link));
+            link.click();
+            return true;
+        } catch (Exception e) {
+            return false;
         }
-        return false;
-    }
-
-    public List<String> getCategories() {
-        wait.until(ExpectedConditions.visibilityOfAllElements(categories));
-        return categories.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 }

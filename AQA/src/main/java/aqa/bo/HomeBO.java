@@ -3,8 +3,6 @@ package aqa.bo;
 import aqa.po.HomePage;
 import org.openqa.selenium.WebDriver;
 
-import java.util.List;
-
 public class HomeBO {
     private HomePage homePage;
 
@@ -26,9 +24,5 @@ public class HomeBO {
 
     public boolean isLinkPresentInArticle(String linkText) {
         return homePage.isLinkPresent(linkText);
-    }
-
-    public List<String> getArticleCategories() {
-        return homePage.getCategories();
     }
 }

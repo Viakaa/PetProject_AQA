@@ -17,6 +17,14 @@
             <class name="aqa.ui.TestLinkPresent"/>
         </classes>
     </test>
+
+    <test name="Wikipedia Api Tests">
+        <classes>
+            <class name="aqa.api.ExtractIntroApiTest"/>
+            <class name="aqa.api.RandomArticleInfoApiTest"/>
+            <class name="aqa.api.SearchArticleApiTest"/>
+        </classes>
+    </test>
 </suite>
 
 

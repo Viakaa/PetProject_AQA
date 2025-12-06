@@ -1,0 +1,23 @@
+2025-12-06 22:21:11 INFO  CustomListener:24 - === TestNG execution started ===
+2025-12-06 22:21:11 INFO  CustomListener:14 - === Starting test suite: Default Suite ===
+2025-12-06 22:21:18 INFO  CustomListener:35 - === Test started: linkPresenceTest ===
+2025-12-06 22:21:21 INFO  CustomListener:40 - === Test PASSED: linkPresenceTest ===
+2025-12-06 22:21:22 INFO  CustomListener:60 - === All tests in 'PetProject_AQA' have finished ===
+2025-12-06 22:21:22 INFO  CustomListener:19 - === Test suite finished: Default Suite ===
+2025-12-06 22:21:22 INFO  CustomListener:29 - === TestNG execution finished ===
+2025-12-06 22:21:35 INFO  CustomListener:24 - === TestNG execution started ===
+2025-12-06 22:21:35 INFO  CustomListener:14 - === Starting test suite: Default Suite ===
+2025-12-06 22:21:39 INFO  CustomListener:35 - === Test started: searchArticleTest ===
+2025-12-06 22:21:42 INFO  CustomListener:40 - === Test PASSED: searchArticleTest ===
+2025-12-06 22:21:46 INFO  CustomListener:35 - === Test started: searchArticleTest ===
+2025-12-06 22:21:48 INFO  CustomListener:40 - === Test PASSED: searchArticleTest ===
+2025-12-06 22:21:50 INFO  CustomListener:60 - === All tests in 'PetProject_AQA' have finished ===
+2025-12-06 22:21:50 INFO  CustomListener:19 - === Test suite finished: Default Suite ===
+2025-12-06 22:21:50 INFO  CustomListener:29 - === TestNG execution finished ===
+2025-12-06 22:22:00 INFO  CustomListener:24 - === TestNG execution started ===
+2025-12-06 22:22:00 INFO  CustomListener:14 - === Starting test suite: Default Suite ===
+2025-12-06 22:22:05 INFO  CustomListener:35 - === Test started: searchResultHeadingTest ===
+2025-12-06 22:22:06 INFO  CustomListener:40 - === Test PASSED: searchResultHeadingTest ===
+2025-12-06 22:22:07 INFO  CustomListener:60 - === All tests in 'PetProject_AQA' have finished ===
+2025-12-06 22:22:07 INFO  CustomListener:19 - === Test suite finished: Default Suite ===
+2025-12-06 22:22:07 INFO  CustomListener:29 - === TestNG execution finished ===
