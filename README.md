@@ -12,55 +12,105 @@ The framework follows a **layered architecture** and is designed for **scalabili
 ## Project Structure
 
 AQA
+
 ├── allure-results # Allure report results (screenshots, API JSONs, test logs)
+
 ├── jenkins # Jenkins job configurations (CI/CD pipelines)
+
 ├── logs # Logs of test executions (UI, API, performance)
+
 ├── performance # JMeter test plans and results for performance testing
+
 ├── src
+
 │ ├── main
+
 │ │ ├── java
+
 │ │ │ └── aqa
+
 │ │ │ ├── api
+
 │ │ │ │ ├── ExtractResponse.java # POJO class for Extract API responses
+
 │ │ │ │ ├── RandomResponse.java # POJO class for Random Article API responses
+
 │ │ │ │ └── SearchResponse.java # POJO class for Search API responses
+
 │ │ │ │
+
 │ │ │ ├── bo
+
 │ │ │ │ ├── HomeBO.java # Business Object layer for Home page UI actions
+
 │ │ │ │ └── SearchBO.java # Business Object layer for Search page UI actions
+
 │ │ │ │
+
 │ │ │ ├── db
+
 │ │ │ │ ├── HibernateUtil.java # Utility class for Hibernate session management
+
 │ │ │ │ └── TestData.java # ORM class for test data generation & validation
+
 │ │ │ │
+
 │ │ │ ├── listeners
+
 │ │ │ │ ├── CustomAllureListener.java # Listener for Allure reporting
+
 │ │ │ │ └── CustomListener.java # Custom TestNG listener for logging and reporting
+
 │ │ │ │
+
 │ │ │ ├── po
+
 │ │ │ │ ├── HomePage.java # Page Object for Home page
+
 │ │ │ │ └── SearchResultsPage.java # Page Object for Search Results page
+
 │ │ │ │
+
 │ │ │ ├── ConfigReader.java # Reads configuration properties (e.g., base URL, browser)
+
 │ │ │ └── DriverPool.java # Manages WebDriver instances for multiple browsers (Chrome, Firefox)
+
 │ │ │
+
 │ │ └── resources
+
 │ │ └── testng.xml # TestNG suite configuration (UI & API tests, listeners, groups)
+
 │ │
+
 │ └── test
+
 │ └── java
+
 │ └── aqa
+
 │ ├── api
+
 │ │ ├── ExtractIntroApiTest.java # API test for extracting intro from Wikipedia
+
 │ │ ├── RandomArticleInfoApiTest.java # API test for random article info
+
 │ │ └── SearchArticleApiTest.java # API test for searching articles
+
 │ │
+
 │ └── ui
+
 │ ├── TestLinkPresent.java # UI test checking presence of links
+
 │ ├── TestSearch.java # UI test for search functionality
+
 │ └── TestSearchResultHeading.java # UI test verifying search result headings
+
 │
+
 ├── target # Maven build output (compiled classes, reports)
+
 └── pom.xml # Maven project configuration (dependencies, plugins)
 
 
