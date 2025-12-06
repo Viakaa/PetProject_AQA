@@ -24,7 +24,7 @@ public class TestSearchResultHeading {
         homeBO.openHomePage();
     }
 
-    @Test
+    @Test(groups = {"ui"})
     public void searchResultHeadingTest() {
         String searchTerm = "Selenium (software)";
         String expectedHeading = "Selenium (software)";

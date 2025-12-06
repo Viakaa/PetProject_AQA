@@ -11,10 +11,9 @@ import static org.testng.Assert.*;
 
 public class SearchArticleApiTest {
 
-    @Test
+    @Test(groups = {"api"})
     public void searchArticleTest() {
 
-        // 1. Отримуємо Response
         Response response =
                 given()
                         .baseUri(ConfigReader.GetProperty("base.url"))

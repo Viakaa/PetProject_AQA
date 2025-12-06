@@ -20,7 +20,7 @@ public class TestLinkPresent {
         homeBO.openHomePage();
     }
 
-    @Test
+    @Test(groups = {"ui"})
     public void linkPresenceTest() {
         String searchTerm = "Selenium (software)";
         String linkText = "browser automation";

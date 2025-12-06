@@ -21,7 +21,7 @@ public class TestSearch {
         homeBO.openHomePage();
     }
 
-    @Test(dataProvider = "searchTerms", dataProviderClass = TestData.class)
+    @Test(groups = {"ui"},dataProvider = "searchTerms", dataProviderClass = TestData.class)
     public void searchArticleTest(String term, String expectedTitle) throws InterruptedException {
         homeBO.searchFor(term);
         String actualTitle = homeBO.getFirstHeading();

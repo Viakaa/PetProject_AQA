@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
 
 public class ExtractIntroApiTest {
 
-    @Test
+    @Test(groups = {"api"})
     public void extractIntroTest() throws Exception {
 
         ExtractResponse response =

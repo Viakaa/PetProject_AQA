@@ -10,7 +10,7 @@ import static org.testng.Assert.assertEquals;
 
 public class RandomArticleInfoApiTest {
 
-    @Test
+    @Test(groups = {"api"})
     public void randomArticleInfoTest() throws Exception {
 
         RandomResponse random =
