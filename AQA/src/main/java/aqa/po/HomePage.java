@@ -21,10 +21,26 @@ public class HomePage {
     @FindBy(xpath = "//a[text()='browser automation']")
     private List<WebElement> links;
 
+    @FindBy(xpath = "//span[contains(@class, 'cdx-typeahead-search__search-footer__text')]")
+    private WebElement searchFooterOption;
+
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         PageFactory.initElements(driver, this);
+    }
+
+    public void searchForMenu(String term) {
+        wait.until(ExpectedConditions.visibilityOf(searchInput));
+        searchInput.clear();
+        searchInput.sendKeys(term);
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(searchFooterOption));
+            searchFooterOption.click();
+        } catch (Exception e) {
+            searchInput.submit();
+        }
     }
 
     public void open(String url) {
@@ -53,6 +69,16 @@ public class HomePage {
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    public String getArticleContent() {
+        try {
+            WebElement content = wait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.id("mw-content-text")));
+            return content.getText();
+        } catch (Exception e) {
+            return "";
         }
     }
 }

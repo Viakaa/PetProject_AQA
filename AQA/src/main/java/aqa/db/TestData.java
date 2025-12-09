@@ -7,8 +7,8 @@ public class TestData {
     @DataProvider(name = "searchTerms")
     public static Object[][] searchTerms() {
         return new Object[][]{
-                {"Selenium (software)", "Selenium (software) - Wikipedia"},
-                {"Java (programming language)", "Java (programming language) - Wikipedia"}
+                {"Selenium (software)", "Selenium (software)", "selenium.dev"},
+                {"Java (programming language)", "Java (programming language)", "oracle.com"}
         };
     }
 }

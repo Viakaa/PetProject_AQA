@@ -25,4 +25,6 @@ public class HomeBO {
     public boolean isLinkPresentInArticle(String linkText) {
         return homePage.isLinkPresent(linkText);
     }
+
+    public String getArticleContent() { return homePage.getArticleContent(); }
 }

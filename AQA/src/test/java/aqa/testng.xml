@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MainTests">
+    <test name="MainTests">
+        <parameter name="CityParam" value="XMLCity"/>
+        <parameter name="StateParam" value="XMLState"/>
+    </test>
+    <listeners>
+        <listener class-name="aqa.listeners.CustomAllureListener"/>
+        <listener class-name="aqa.listeners.CustomListener"/>
+    </listeners>
+
+    <test name="Wikipedia UI Tests">
+        <classes>
+            <class name="aqa.ui.TestArticlesLink"/>
+            <class name="aqa.ui.TestLogin"/>
+            <class name="aqa.ui.TestRandomArticleSwitchLanguage"/>
+        </classes>
+    </test>
+
+    <test name="Wikipedia Api Tests">
+        <classes>
+            <class name="aqa.api.AddPageToWatchListApiTest"/>
+            <class name="aqa.api.ChangeUsersGenderApiTest"/>
+            <class name="aqa.api.CreateSandboxPageTest"/>
+        </classes>
+    </test>
+</suite>
+
+
