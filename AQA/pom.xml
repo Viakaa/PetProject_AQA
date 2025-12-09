@@ -10,7 +10,7 @@
         <aspectj.version>1.9.22.1</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <io.appium.version>9.5.0</io.appium.version>
-        <selenium.java>4.34.0</selenium.java>
+        <selenium.java>4.38.0</selenium.java>
         <testng.version>7.8.0</testng.version>
         <aspectj.weaver>1.9.9.1</aspectj.weaver>
         <guava.version>33.0.0-jre</guava.version>
@@ -27,11 +27,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.3.20.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.5</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -115,6 +110,13 @@
             <artifactId>sikulixapi</artifactId>
             <version>2.0.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -124,7 +126,7 @@
                 <version>3.2.5</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\java\aqa\testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>

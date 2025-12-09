@@ -19,6 +19,5 @@ public class SearchResponse {
     public static class SearchItem {
         public int pageid;
         public String title;
-        public String snippet;
     }
 }

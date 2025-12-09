@@ -8,7 +8,6 @@ import org.testng.*;
 public class CustomListener implements ITestListener, ISuiteListener, IExecutionListener {
     private static final Logger logger = LogManager.getLogger(CustomListener.class);
 
-    // ================= Suite & Execution =================
     @Override
     public void onStart(ISuite suite) {
         logger.info("=== Starting test suite: " + suite.getName() + " ===");

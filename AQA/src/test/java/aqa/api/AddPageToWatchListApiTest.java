@@ -5,32 +5,27 @@ import aqa.db.LoginDataProvider;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.fail;
-import static org.testng.Assert.assertTrue;
 
 public class AddPageToWatchListApiTest {
+    private static final Logger logger = LoggerFactory.getLogger(AddPageToWatchListApiTest.class);
 
     @Test(dataProvider = "users", dataProviderClass = LoginDataProvider.class, groups = {"api"})
     public void addPageToWatchlistTest(String username, String password) throws Exception {
 
         String baseUrl = ConfigReader.GetProperty("base.url");
-        String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
         Map<String, String> cookieMap = new HashMap<>();
 
-        // ==================================================================================
-        // КРОК 1 & 2: ЛОГІН (Стандартна процедура)
-        // ==================================================================================
-        System.out.println("=== STEP 1: Requesting login token ===");
+        logger.info("=== STEP 1: Requesting login token ===");
         Response tokenResponse = given()
                 .baseUri(baseUrl)
-                .header("User-Agent", userAgent)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .contentType(ContentType.URLENC.withCharset("UTF-8"))
                 .formParam("action", "login")
                 .formParam("lgname", username)
@@ -46,12 +41,16 @@ public class AddPageToWatchListApiTest {
         String cookieHeader = joinCookies(cookieMap);
         String loginToken = tokenResponse.xmlPath().getString("api.login.@token");
 
-        if (loginToken == null) fail("Login Token not found!");
+        if (loginToken == null) {
+            logger.error("Login Token not found! Response body: \n{}", tokenResponse.asString());
+            fail("Login Token not found!");
+        }
+        logger.info("Login Token received.");
 
-        System.out.println("=== STEP 2: Logging in ===");
+        logger.info("=== STEP 2: Logging in ===");
         Response loginResponse = given()
                 .baseUri(baseUrl)
-                .header("User-Agent", userAgent)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .header("Cookie", cookieHeader)
                 .contentType(ContentType.URLENC.withCharset("UTF-8"))
                 .formParam("action", "login")
@@ -66,25 +65,23 @@ public class AddPageToWatchListApiTest {
                 .extract().response();
 
         cookieMap.putAll(loginResponse.getCookies());
-        cookieHeader = joinCookies(cookieMap); // Оновлюємо заголовок куків
+        cookieHeader = joinCookies(cookieMap);
 
         if (!"Success".equals(loginResponse.xmlPath().getString("api.login.@result"))) {
-            fail("Login Failed! Reason: " + loginResponse.xmlPath().getString("api.login.@reason"));
+            String reason = loginResponse.xmlPath().getString("api.login.@reason");
+            logger.error("Login Failed! Reason: {}", reason);
+            fail("Login Failed! Reason: " + reason);
         }
-        System.out.println("Login successful.");
+        logger.info("Login successful for user: {}", username);
 
-        // ==================================================================================
-        // КРОК 3: ОТРИМАННЯ WATCH TOKEN (type=watch)
-        // JMeter: action=query&meta=tokens&type=watch
-        // ==================================================================================
-        System.out.println("=== STEP 3: Getting Watch Token ===");
+        logger.info("=== STEP 3: Getting Watch Token ===");
         Response watchTokenResponse = given()
                 .baseUri(baseUrl)
-                .header("User-Agent", userAgent)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .header("Cookie", cookieHeader)
                 .queryParam("action", "query")
                 .queryParam("meta", "tokens")
-                .queryParam("type", "watch") // Специфічний тип токена
+                .queryParam("type", "watch")
                 .queryParam("format", "xml")
                 .when()
                 .get()
@@ -92,35 +89,29 @@ public class AddPageToWatchListApiTest {
                 .statusCode(200)
                 .extract().response();
 
-        // Оновлюємо куки
         if (!watchTokenResponse.getCookies().isEmpty()) {
             cookieMap.putAll(watchTokenResponse.getCookies());
             cookieHeader = joinCookies(cookieMap);
         }
 
-        // Шлях до watchtoken у XML
         String watchToken = watchTokenResponse.xmlPath().getString("api.query.tokens.@watchtoken");
         if (watchToken == null) {
-            fail("Watch Token is null! Response: " + watchTokenResponse.asString());
+            logger.error("Watch Token is null! Response: \n{}", watchTokenResponse.asString());
+            fail("Watch Token is null!");
         }
-        System.out.println("Watch token received: " + watchToken);
+        logger.info("Watch Token received.");
 
-        // ==================================================================================
-        // КРОК 4: ДОДАВАННЯ ДО WATCHLIST (action=watch)
-        // ==================================================================================
-        System.out.println("=== STEP 4: Adding page to Watchlist ===");
-
-        // Сторінка, яку будемо додавати
+        logger.info("=== STEP 4: Adding page to Watchlist ===");
         String pageTitle = "User:" + username + "/sandbox/TestPage_Watchlist";
 
         Response watchResponse = given()
                 .baseUri(baseUrl)
-                .header("User-Agent", userAgent)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .header("Cookie", cookieHeader)
                 .contentType(ContentType.URLENC.withCharset("UTF-8"))
                 .formParam("action", "watch")
                 .formParam("titles", pageTitle)
-                .formParam("token", watchToken) // Використовуємо саме watchToken
+                .formParam("token", watchToken)
                 .formParam("format", "xml")
                 .when()
                 .post()
@@ -128,25 +119,55 @@ public class AddPageToWatchListApiTest {
                 .statusCode(200)
                 .extract().response();
 
-        System.out.println("Watch response: " + watchResponse.asString());
+        String errorCode = watchResponse.xmlPath().getString("api.error.@code");
+        if (errorCode != null) {
+            String errorInfo = watchResponse.xmlPath().getString("api.error.@info");
+            logger.error("API Error during Watch action! Code: {}, Info: {}", errorCode, errorInfo);
+            fail("API Error during Watch action! Code: " + errorCode + ", Info: " + errorInfo);
+        }
 
-        // ==================================================================================
-        // КРОК 5: ПЕРЕВІРКА
-        // Успішна відповідь містить атрибут 'watched' у тезі <watch>
-        // Приклад: <api><watch title="..." watched="" ... /></api>
-        // ==================================================================================
+        boolean isWatchedResponse = watchResponse.xmlPath().getString("api.watch.w.@watched") != null;
+        String watchedTitle = watchResponse.xmlPath().getString("api.watch.w.@title");
 
-        // Перевіряємо, чи є атрибут "watched" у відповіді
-        // У RestAssured XmlPath перевірка наявності атрибута робиться через get() != null
-        boolean isWatched = watchResponse.xmlPath().get("api.watch.@watched") != null;
+        if (!isWatchedResponse) {
+            logger.error("Page was NOT added to watchlist. Response: \n{}", watchResponse.asString());
+            fail("Page was NOT added to watchlist! (Attribute 'watched' missing in response)");
+        }
 
-        // Також перевіримо ім'я сторінки
-        String watchedTitle = watchResponse.xmlPath().getString("api.watch.@title");
+        String normalizedExpectedTitle = pageTitle.replace("_", " ");
+        if (!normalizedExpectedTitle.equalsIgnoreCase(watchedTitle)) {
+            logger.error("Title mismatch! Expected: '{}', Actual: '{}'", normalizedExpectedTitle, watchedTitle);
+            fail("Watched page title mismatch! Expected: " + normalizedExpectedTitle + ", Actual: " + watchedTitle);
+        }
 
-        assertTrue(isWatched, "Page was NOT added to watchlist! (Attribute 'watched' missing in response)");
-        assertTrue(pageTitle.equalsIgnoreCase(watchedTitle), "Watched page title mismatch!");
+        logger.info("Success: Page added response confirmed.");
 
-        System.out.println("SUCCESS: Page '" + pageTitle + "' added to watchlist.");
+
+        logger.info("=== STEP 5: Verifying that page is added===");
+
+        Response verifyResponse = given()
+                .baseUri(baseUrl)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+                .header("Cookie", cookieHeader)
+                .queryParam("action", "query")
+                .queryParam("prop", "info")
+                .queryParam("inprop", "watched")
+                .queryParam("titles", pageTitle)
+                .queryParam("format", "xml")
+                .when()
+                .get()
+                .then()
+                .statusCode(200)
+                .extract().response();
+
+        boolean isActuallyWatched = verifyResponse.xmlPath().getString("api.query.pages.page.@watched") != null;
+
+        if (!isActuallyWatched) {
+            logger.error("Verification failed: The page '{}' is NOT found in the user's watchlist. Response: \n{}", pageTitle, verifyResponse.asString());
+            fail("Verification failed: The page '" + pageTitle + "' is NOT found in the user's watchlist.");
+        }
+
+        logger.info("Sucess: Page '{}' is in the watchlist.", pageTitle);
     }
 
     private String joinCookies(Map<String, String> cookies) {

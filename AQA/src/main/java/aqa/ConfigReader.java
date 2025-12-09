@@ -1,8 +1,7 @@
 package aqa;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
@@ -10,15 +9,22 @@ public class ConfigReader {
     static Properties properties = new Properties();
 
     static {
-        try {
-            properties.load(new FileInputStream(new File("C:\\\\Users\\\\viket\\\\IdeaProjects\\\\PetProject_AQA\\\\AQA\\\\src\\\\main\\\\resources\\\\config.properties").getAbsoluteFile()));
+        try (InputStream input = ConfigReader.class
+                .getClassLoader()
+                .getResourceAsStream("config.properties")) {
+
+            if (input == null) {
+                throw new RuntimeException("config.properties not found in resources folder!");
+            }
+
+            properties.load(input);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public static String GetProperty(String key){
-
-        return properties.getProperty( key );
+        return properties.getProperty(key);
     }
 }

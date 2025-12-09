@@ -4,6 +4,8 @@ import aqa.ConfigReader;
 import aqa.db.LoginDataProvider;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -15,6 +17,8 @@ import static org.testng.Assert.fail;
 
 public class CreateSandboxPageTest {
 
+    private static final Logger logger = LoggerFactory.getLogger(CreateSandboxPageTest.class);
+
     @Test(dataProvider = "users", dataProviderClass = LoginDataProvider.class, groups = {"api"})
     public void createSandboxPageTest(String username, String password) throws Exception {
 
@@ -22,7 +26,9 @@ public class CreateSandboxPageTest {
         String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
         Map<String, String> cookieMap = new HashMap<>();
 
-        System.out.println("=== STEP 1: Requesting login token ===");
+        logger.info("Starting CreateSandboxPageTest for user: {}", username);
+
+        logger.info("=== STEP 1: Requesting login token ===");
         Response tokenResponse = given()
                 .baseUri(baseUrl)
                 .header("User-Agent", userAgent)
@@ -40,12 +46,14 @@ public class CreateSandboxPageTest {
         cookieMap.putAll(tokenResponse.getCookies());
         String cookieHeader = joinCookies(cookieMap);
         String loginToken = tokenResponse.xmlPath().getString("api.login.@token");
-        if (loginToken == null) {
-            fail("Login Token not found! Response: " + tokenResponse.asString());
-        }
-        System.out.println("Login token received: " + loginToken);
 
-        System.out.println("=== STEP 2: Logging in ===");
+        if (loginToken == null) {
+            logger.error("Login Token not found! Response: \n{}", tokenResponse.asString());
+            fail("Login Token not found!");
+        }
+        logger.info("Login token received: {}", loginToken);
+
+        logger.info("=== STEP 2: Logging in ===");
         Response loginResponse = given()
                 .baseUri(baseUrl)
                 .header("User-Agent", userAgent)
@@ -68,11 +76,12 @@ public class CreateSandboxPageTest {
         String result = loginResponse.xmlPath().getString("api.login.@result");
         if (!"Success".equals(result)) {
             String reason = loginResponse.xmlPath().getString("api.login.@reason");
+            logger.error("Login Failed! Reason: {}", reason);
             fail("Login Failed! Reason: " + reason);
         }
-        System.out.println("Login successful for user: " + username);
+        logger.info("Login successful for user: {}", username);
 
-        System.out.println("=== STEP 3: Getting CSRF token ===");
+        logger.info("=== STEP 3: Getting CSRF token ===");
         Response csrfResponse = given()
                 .baseUri(baseUrl)
                 .header("User-Agent", userAgent)
@@ -94,13 +103,15 @@ public class CreateSandboxPageTest {
 
         String csrfToken = csrfResponse.xmlPath().getString("api.query.tokens.@csrftoken");
         if (csrfToken == null) {
-            fail("CSRF Token is null! Response: " + csrfResponse.asString());
+            logger.error("CSRF Token is null! Response: \n{}", csrfResponse.asString());
+            fail("CSRF Token is null!");
         }
-        System.out.println("CSRF token received: " + csrfToken);
+        logger.info("CSRF token received.");
 
-        System.out.println("=== STEP 4: Creating page ===");
+        logger.info("=== STEP 4: Creating page ===");
         String pageTitle = "User:" + username + "/sandbox/TestPage_Check";
         String pageContent = "Automated test create via RestAssured.";
+
         Response createPageResponse = given()
                 .baseUri(baseUrl)
                 .header("User-Agent", userAgent)
@@ -120,13 +131,16 @@ public class CreateSandboxPageTest {
         String createPageResult = createPageResponse.xmlPath().getString("api.edit.@result");
         if (!"Success".equals(createPageResult)) {
             if (createPageResponse.xmlPath().get("api.edit.captcha") != null) {
-                fail("CAPTCHA required! Response: " + createPageResponse.asString());
+                logger.error("Captcha required! Response: \n{}", createPageResponse.asString());
+                fail("Captcha required!");
             }
-            fail("Edit failed with result: " + createPageResult + ". Response: " + createPageResponse.asString());
+            logger.error("Edit failed with result: {}. Response: \n{}", createPageResult, createPageResponse.asString());
+            fail("Edit failed with result: " + createPageResult);
         }
 
-        System.out.println("Page created successfully: " + pageTitle);
-        System.out.println("=== STEP 5: Verifying page content ===");
+        logger.info("Page created successfully: {}", pageTitle);
+
+        logger.info("=== STEP 5: Verifying page content ===");
         Response verifyResponse = given()
                 .baseUri(baseUrl)
                 .header("User-Agent", userAgent)
@@ -144,13 +158,13 @@ public class CreateSandboxPageTest {
 
         String responseBody = verifyResponse.asString();
         if (!responseBody.contains(pageContent)) {
-            System.out.println("Full verification response: " + responseBody);
-            fail("Page content verification failed! Expected text '" + pageContent + "' not found.");
+            logger.error("Page content verification failed! Expected text '{}' not found.", pageContent);
+            logger.error("Full verification response: \n{}", responseBody);
+            fail("Page content verification failed!");
         }
 
-        System.out.println("SUCCESS: Page content verified. Text found: '" + pageContent + "'");
+        logger.info("Sucess: Page content verified. Text found: '{}'", pageContent);
     }
-
 
     private String joinCookies(Map<String, String> cookies) {
         return cookies.entrySet().stream()

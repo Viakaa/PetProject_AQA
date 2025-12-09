@@ -11,41 +11,47 @@ Fetching upstream changes from https://github.com/Viakaa/PetProject_AQA
  > git --version # 'git version 2.46.1.windows.1'
  > git.exe fetch --tags --force --progress -- https://github.com/Viakaa/PetProject_AQA +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
-Checking out Revision 3d482a4fc6681c0f74928824fed5dec5c2ca55d5 (refs/remotes/origin/main)
+Checking out Revision 9f665f376cad2053d2f694b04c2dfc91067b5bee (refs/remotes/origin/main)
  > git.exe config core.sparsecheckout # timeout=10
- > git.exe checkout -f 3d482a4fc6681c0f74928824fed5dec5c2ca55d5 # timeout=10
-Commit message: "updated pom.xml"
+ > git.exe checkout -f 9f665f376cad2053d2f694b04c2dfc91067b5bee # timeout=10
+Commit message: "Enhance README with project structure details"
  > git.exe rev-list --no-walk 3d482a4fc6681c0f74928824fed5dec5c2ca55d5 # timeout=10
 [API_Test] $ cmd.exe /C "C:\Users\viket\.jenkins\tools\hudson.tasks.Maven_MavenInstallation\Maven\bin\mvn.cmd -f AQA/pom.xml clean test "-Dtest=aqa.api.*Test" && exit %%ERRORLEVEL%%"
 [INFO] Scanning for projects...
-[INFO]
+[INFO] 
 [INFO] --------------------------< org.example:AQA >---------------------------
 [INFO] Building AQA 1.0-SNAPSHOT
 [INFO]   from pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
-[INFO]
+Downloading from central: https://repo.maven.apache.org/maven2/org/seleniumhq/selenium/selenium-api/maven-metadata.xml
+Progress (1): 4.6 kBProgress (1): 6.1 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/seleniumhq/selenium/selenium-api/maven-metadata.xml (6.1 kB at 6.6 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/seleniumhq/selenium/selenium-remote-driver/maven-metadata.xml
+Progress (1): 4.1 kBProgress (1): 6.1 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/seleniumhq/selenium/selenium-remote-driver/maven-metadata.xml (6.1 kB at 91 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/seleniumhq/selenium/selenium-support/maven-metadata.xml
+Progress (1): 4.4 kBProgress (1): 6.3 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/seleniumhq/selenium/selenium-support/maven-metadata.xml (6.3 kB at 68 kB/s)
+[INFO] 
 [INFO] --- clean:3.2.0:clean (default-clean) @ AQA ---
 [INFO] Deleting C:\Users\viket\.jenkins\workspace\API_Test\AQA\target
-[INFO]
+[INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ AQA ---
 [INFO] Copying 6 resources from src\main\resources to target\classes
-[INFO]
+[INFO] 
 [INFO] --- compiler:3.13.0:compile (default-compile) @ AQA ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 13 source files with javac [debug target 11] to target\classes
 [WARNING] system modules path not set in conjunction with -source 11
-[INFO]
+[INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ AQA ---
 [INFO] skip non existing resourceDirectory C:\Users\viket\.jenkins\workspace\API_Test\AQA\src\test\resources
-[INFO]
+[INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ AQA ---
 [INFO] Recompiling the module because of changed dependency.
 [INFO] Compiling 6 source files with javac [debug target 11] to target\test-classes
 [WARNING] system modules path not set in conjunction with -source 11
-[INFO]
+[INFO] 
 [INFO] --- surefire:3.2.5:test (default-test) @ AQA ---
 [INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
-[INFO]
+[INFO] 
 [INFO] -------------------------------------------------------
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
@@ -55,16 +61,16 @@ SLF4J: Found binding in [jar:file:/C:/Users/viket/.m2/repository/org/slf4j/slf4j
 SLF4J: Found binding in [jar:file:/C:/Users/viket/.m2/repository/org/slf4j/slf4j-nop/1.7.28/slf4j-nop-1.7.28.jar!/org/slf4j/impl/StaticLoggerBinder.class]
 SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.605 s -- in TestSuite
-[INFO]
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.557 s -- in TestSuite
+[INFO] 
 [INFO] Results:
-[INFO]
+[INFO] 
 [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
-[INFO]
+[INFO] 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  24.427 s
-[INFO] Finished at: 2025-12-06T21:19:33+02:00
+[INFO] Total time:  24.071 s
+[INFO] Finished at: 2025-12-09T23:11:35+02:00
 [INFO] ------------------------------------------------------------------------
 Finished: SUCCESS

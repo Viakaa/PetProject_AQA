@@ -1,42 +1,39 @@
 package aqa.ui;
 
-import aqa.bo.HomeBO;
-import aqa.db.TestData;
 import aqa.DriverPool;
+import aqa.bo.UserBO;
+import aqa.db.LoginDataProvider;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 @Listeners({aqa.listeners.CustomAllureListener.class, aqa.listeners.CustomListener.class})
-public class TestSearch {
+public class TestLogin {
 
     private WebDriver driver;
-    private HomeBO homeBO;
+    private UserBO userBO;
 
-    @Parameters({"browser"})
     @BeforeMethod
-    public void setUp(@Optional("chrome") String browser) {
+    public void setUp() {
         driver = DriverPool.getDriver();
-        homeBO = new HomeBO(driver);
-        homeBO.openHomePage();
+        userBO = new UserBO(driver);
     }
 
-    @Test(groups = {"ui"},dataProvider = "searchTerms", dataProviderClass = TestData.class)
-    public void searchArticleTest(String term, String expectedTitle) {
+    @Test(groups = "ui", dataProvider = "users", dataProviderClass = LoginDataProvider.class)
+    public void validLoginAndWatchlistTest(String username, String password) {
+        userBO.openLoginPage();
 
-        homeBO.searchFor(term);
+        userBO.login(username, password);
+        userBO.goToWatchlist();
 
-        String actualTitle = homeBO.getFirstHeading();
-        Assert.assertEquals(actualTitle, expectedTitle,
-                "Article heading must match expected!");
+        String title = userBO.getPageTitle();
+        Assert.assertTrue(title.contains("Watchlist"),
+                "Page title should contain 'Watchlist'. Actual: " + title);
 
-        String currentUrl = driver.getCurrentUrl().toLowerCase();
-        Assert.assertTrue(currentUrl.contains(term.split(" ")[0].toLowerCase()),
-                "URL should contain search term fragment.");
+        userBO.logout();
 
-        String articleContent = homeBO.getArticleContent();
-        Assert.assertFalse(articleContent.isEmpty(),
-                "Article content should not be empty!");
+        Assert.assertTrue(userBO.getPageTitle().contains("Log out") || userBO.getPageTitle().contains("Wikipedia"),
+                "User should be logged out");
     }
 
     @AfterMethod

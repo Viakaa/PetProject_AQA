@@ -11,10 +11,10 @@ Fetching upstream changes from https://github.com/Viakaa/PetProject_AQA
  > git --version # 'git version 2.46.1.windows.1'
  > git.exe fetch --tags --force --progress -- https://github.com/Viakaa/PetProject_AQA +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
-Checking out Revision 0052e8f169c71e8dca9a21a5442e0048e64292cf (refs/remotes/origin/main)
+Checking out Revision 9f665f376cad2053d2f694b04c2dfc91067b5bee (refs/remotes/origin/main)
  > git.exe config core.sparsecheckout # timeout=10
- > git.exe checkout -f 0052e8f169c71e8dca9a21a5442e0048e64292cf # timeout=10
-Commit message: "updated homeBO"
+ > git.exe checkout -f 9f665f376cad2053d2f694b04c2dfc91067b5bee # timeout=10
+Commit message: "Enhance README with project structure details"
  > git.exe rev-list --no-walk 0052e8f169c71e8dca9a21a5442e0048e64292cf # timeout=10
 [UI_Test] $ cmd.exe /C "C:\Users\viket\.jenkins\tools\hudson.tasks.Maven_MavenInstallation\Maven\bin\mvn.cmd -f AQA/pom.xml clean test "-Dtest=aqa.ui.Test*" && exit %%ERRORLEVEL%%"
 [INFO] Scanning for projects...
@@ -55,40 +55,40 @@ SLF4J: Found binding in [jar:file:/C:/Users/viket/.m2/repository/org/slf4j/slf4j
 SLF4J: Found binding in [jar:file:/C:/Users/viket/.m2/repository/org/slf4j/slf4j-nop/1.7.28/slf4j-nop-1.7.28.jar!/org/slf4j/impl/StaticLoggerBinder.class]
 SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
-22:09:56 [main] INFO  aqa.listeners.CustomListener - === TestNG execution started ===
-22:09:56 [main] INFO  aqa.listeners.CustomListener - === Starting test suite: Surefire suite ===
+23:12:21 [main] INFO  aqa.listeners.CustomListener - === TestNG execution started ===
+23:12:21 [main] INFO  aqa.listeners.CustomListener - === Starting test suite: Surefire suite ===
 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 142.0.7444.175 (resolved driver for Chrome 142)
 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\viket\.cache\selenium\chromedriver\win64\142.0.7444.175\chromedriver.exe
-????. 06, 2025 10:10:01 ?? org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+????. 09, 2025 11:12:23 ?? org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find an exact match for CDP version 142, returning the closest version; found: 138; Please update to a Selenium version that supports CDP version 142
-22:10:02 [main] INFO  aqa.listeners.CustomListener - === Test started: linkPresenceTest ===
-22:10:03 [main] INFO  aqa.listeners.CustomListener - === Test PASSED: linkPresenceTest ===
+23:12:24 [main] INFO  aqa.listeners.CustomListener - === Test started: linkPresenceTest ===
+23:12:25 [main] INFO  aqa.listeners.CustomListener - === Test PASSED: linkPresenceTest ===
 SuccesslinkPresenceTest
 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 142.0.7444.175 (resolved driver for Chrome 142)
 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\viket\.cache\selenium\chromedriver\win64\142.0.7444.175\chromedriver.exe
-????. 06, 2025 10:10:06 ?? org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+????. 09, 2025 11:12:26 ?? org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find an exact match for CDP version 142, returning the closest version; found: 138; Please update to a Selenium version that supports CDP version 142
-22:10:07 [main] INFO  aqa.listeners.CustomListener - === Test started: searchArticleTest ===
-22:10:08 [main] INFO  aqa.listeners.CustomListener - === Test PASSED: searchArticleTest ===
+23:12:27 [main] INFO  aqa.listeners.CustomListener - === Test started: searchArticleTest ===
+23:12:28 [main] INFO  aqa.listeners.CustomListener - === Test PASSED: searchArticleTest ===
 SuccesssearchArticleTest
 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 142.0.7444.175 (resolved driver for Chrome 142)
 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\viket\.cache\selenium\chromedriver\win64\142.0.7444.175\chromedriver.exe
-????. 06, 2025 10:10:10 ?? org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+????. 09, 2025 11:12:29 ?? org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find an exact match for CDP version 142, returning the closest version; found: 138; Please update to a Selenium version that supports CDP version 142
-22:10:11 [main] INFO  aqa.listeners.CustomListener - === Test started: searchArticleTest ===
-22:10:12 [main] INFO  aqa.listeners.CustomListener - === Test PASSED: searchArticleTest ===
+23:12:30 [main] INFO  aqa.listeners.CustomListener - === Test started: searchArticleTest ===
+23:12:31 [main] INFO  aqa.listeners.CustomListener - === Test PASSED: searchArticleTest ===
 SuccesssearchArticleTest
 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 142.0.7444.175 (resolved driver for Chrome 142)
 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\viket\.cache\selenium\chromedriver\win64\142.0.7444.175\chromedriver.exe
-????. 06, 2025 10:10:15 ?? org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+????. 09, 2025 11:12:32 ?? org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find an exact match for CDP version 142, returning the closest version; found: 138; Please update to a Selenium version that supports CDP version 142
-22:10:15 [main] INFO  aqa.listeners.CustomListener - === Test started: searchResultHeadingTest ===
-22:10:18 [main] INFO  aqa.listeners.CustomListener - === Test PASSED: searchResultHeadingTest ===
+23:12:33 [main] INFO  aqa.listeners.CustomListener - === Test started: searchResultHeadingTest ===
+23:12:33 [main] INFO  aqa.listeners.CustomListener - === Test PASSED: searchResultHeadingTest ===
 SuccesssearchResultHeadingTest
-22:10:19 [main] INFO  aqa.listeners.CustomListener - === All tests in 'Surefire test' have finished ===
-22:10:19 [main] INFO  aqa.listeners.CustomListener - === Test suite finished: Surefire suite ===
-22:10:19 [main] INFO  aqa.listeners.CustomListener - === TestNG execution finished ===
-[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.73 s -- in TestSuite
+23:12:34 [main] INFO  aqa.listeners.CustomListener - === All tests in 'Surefire test' have finished ===
+23:12:34 [main] INFO  aqa.listeners.CustomListener - === Test suite finished: Surefire suite ===
+23:12:34 [main] INFO  aqa.listeners.CustomListener - === TestNG execution finished ===
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.01 s -- in TestSuite
 [INFO] 
 [INFO] Results:
 [INFO] 
@@ -97,7 +97,7 @@ SuccesssearchResultHeadingTest
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:00 min
-[INFO] Finished at: 2025-12-06T22:10:19+02:00
+[INFO] Total time:  28.174 s
+[INFO] Finished at: 2025-12-09T23:12:34+02:00
 [INFO] ------------------------------------------------------------------------
 Finished: SUCCESS

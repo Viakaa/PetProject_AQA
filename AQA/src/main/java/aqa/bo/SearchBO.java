@@ -5,8 +5,8 @@ import aqa.po.SearchResultsPage;
 import org.openqa.selenium.WebDriver;
 
 public class SearchBO {
-    private HomePage homePage;
-    private SearchResultsPage resultsPage;
+    private final HomePage homePage;
+    private final SearchResultsPage resultsPage;
 
     public SearchBO(WebDriver driver) {
         homePage = new HomePage(driver);

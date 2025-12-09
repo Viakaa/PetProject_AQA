@@ -7,9 +7,8 @@ import java.util.Map;
 public class ExtractResponse {
     private Query query;
 
-    public Query getQuery() {
-        return query;
-    }
+    public Query getQuery() { return query; }
+    public void setQuery(Query query) { this.query = query; }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Query {
@@ -18,17 +17,14 @@ public class ExtractResponse {
         public Map<String, Page> getPages() {
             return pages;
         }
+
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Page {
-        private int pageid;
         private String title;
         private String extract;
 
-        public int getPageid() {
-            return pageid;
-        }
 
         public String getTitle() {
             return title;
@@ -37,5 +33,6 @@ public class ExtractResponse {
         public String getExtract() {
             return extract;
         }
+
     }
 }
