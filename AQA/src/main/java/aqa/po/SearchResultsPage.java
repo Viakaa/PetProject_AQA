@@ -17,10 +17,6 @@ public class SearchResultsPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public boolean isResultsListDisplayed() {
-        return !driver.findElements(firstResultLocator).isEmpty();
-    }
-
     public void openFirstResult() {
         WebElement firstArticle = wait.until(ExpectedConditions.elementToBeClickable(firstResultLocator));
         firstArticle.click();

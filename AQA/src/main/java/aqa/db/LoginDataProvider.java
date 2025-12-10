@@ -8,8 +8,7 @@ public class LoginDataProvider {
     public static Object[][] users() {
         return new Object[][]{
                 {"Carloscarlos123112", "TestPassword"},
-//                {"testuseraccountforapi", "TestPassword"},
-//                {"TestUserApi112", "TestPassword112"}
+                {"Carloscarlos123113", "TestPassword112"}
         };
     }
 }

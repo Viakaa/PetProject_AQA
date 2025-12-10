@@ -56,29 +56,4 @@ public class HomePage {
         wait.until(ExpectedConditions.titleContains(term));
     }
 
-    public String getFirstHeading() {
-        return driver.getTitle();
-    }
-
-    public boolean isLinkPresent(String linkText) {
-        try {
-            WebElement link = wait.until(ExpectedConditions.presenceOfElementLocated(
-                    By.xpath("//a[text()='" + linkText + "']")));
-            wait.until(ExpectedConditions.elementToBeClickable(link));
-            link.click();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public String getArticleContent() {
-        try {
-            WebElement content = wait.until(ExpectedConditions.presenceOfElementLocated(
-                    By.id("mw-content-text")));
-            return content.getText();
-        } catch (Exception e) {
-            return "";
-        }
-    }
 }

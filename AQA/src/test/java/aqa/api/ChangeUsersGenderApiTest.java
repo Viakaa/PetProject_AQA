@@ -3,6 +3,7 @@ package aqa.api;
 import aqa.ConfigReader;
 import aqa.db.LoginDataProvider;
 import io.restassured.http.ContentType;
+import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -139,8 +140,10 @@ public class ChangeUsersGenderApiTest {
                 .statusCode(200)
                 .extract().response();
 
-        String actualGender = verifyResponse.xmlPath()
-                .getString("api.query.userinfo.options.option.find { it.@name == 'gender' }");
+        String responseBody = verifyResponse.asString();
+        XmlPath xmlPath = new XmlPath(responseBody);
+
+        String actualGender = xmlPath.getString("api.query.userinfo.options.@gender");
 
         logger.info("Actual gender in profile: {}", actualGender);
 
@@ -149,7 +152,7 @@ public class ChangeUsersGenderApiTest {
             fail("Gender verification failed!");
         }
 
-        logger.info("SUCCESS: Gender successfully changed to '{}'", actualGender);
+        logger.info("Success: Gender successfully changed to '{}'", actualGender);
     }
 
     private String joinCookies(Map<String, String> cookies) {

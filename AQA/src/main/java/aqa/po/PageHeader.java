@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class PageHeader {
-    private final WebDriver driver;
     private final WebDriverWait wait;
 
     @FindBy(css = "#pt-watchlist-2 a")
@@ -29,7 +28,6 @@ public class PageHeader {
     private WebElement logoutLink;
 
     public PageHeader(WebDriver driver) {
-        this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }

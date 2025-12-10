@@ -23,7 +23,6 @@ public class CreateSandboxPageTest {
     public void createSandboxPageTest(String username, String password) throws Exception {
 
         String baseUrl = ConfigReader.GetProperty("base.url");
-        String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
         Map<String, String> cookieMap = new HashMap<>();
 
         logger.info("Starting CreateSandboxPageTest for user: {}", username);
@@ -31,7 +30,7 @@ public class CreateSandboxPageTest {
         logger.info("=== STEP 1: Requesting login token ===");
         Response tokenResponse = given()
                 .baseUri(baseUrl)
-                .header("User-Agent", userAgent)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .contentType(ContentType.URLENC.withCharset("UTF-8"))
                 .formParam("action", "login")
                 .formParam("lgname", username)
@@ -51,12 +50,12 @@ public class CreateSandboxPageTest {
             logger.error("Login Token not found! Response: \n{}", tokenResponse.asString());
             fail("Login Token not found!");
         }
-        logger.info("Login token received: {}", loginToken);
+        logger.info("Login token received");
 
         logger.info("=== STEP 2: Logging in ===");
         Response loginResponse = given()
                 .baseUri(baseUrl)
-                .header("User-Agent", userAgent)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .header("Cookie", cookieHeader)
                 .contentType(ContentType.URLENC.withCharset("UTF-8"))
                 .formParam("action", "login")
@@ -84,7 +83,7 @@ public class CreateSandboxPageTest {
         logger.info("=== STEP 3: Getting CSRF token ===");
         Response csrfResponse = given()
                 .baseUri(baseUrl)
-                .header("User-Agent", userAgent)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .header("Cookie", cookieHeader)
                 .queryParam("action", "query")
                 .queryParam("meta", "tokens")
@@ -114,7 +113,7 @@ public class CreateSandboxPageTest {
 
         Response createPageResponse = given()
                 .baseUri(baseUrl)
-                .header("User-Agent", userAgent)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .header("Cookie", cookieHeader)
                 .contentType(ContentType.URLENC.withCharset("UTF-8"))
                 .formParam("action", "edit")
@@ -143,7 +142,7 @@ public class CreateSandboxPageTest {
         logger.info("=== STEP 5: Verifying page content ===");
         Response verifyResponse = given()
                 .baseUri(baseUrl)
-                .header("User-Agent", userAgent)
+                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                 .header("Cookie", cookieHeader)
                 .queryParam("action", "query")
                 .queryParam("prop", "extracts")

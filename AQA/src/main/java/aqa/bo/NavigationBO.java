@@ -21,11 +21,6 @@ public class NavigationBO {
     public void openHomePage() {
         homePage.open("https://en.wikipedia.org");
     }
-
-    public void search(String keyword) {
-        homePage.searchFor(keyword);
-    }
-
     public void searchMenu(String keyword){homePage.searchForMenu(keyword);}
 
     public void clickArticle() {
