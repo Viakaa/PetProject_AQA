@@ -142,7 +142,7 @@ public class ChangeUsersGenderApiTest {
 
         String responseBody = verifyResponse.asString();
         XmlPath xmlPath = new XmlPath(responseBody);
-
+        System.out.println(responseBody);
         String actualGender = xmlPath.getString("api.query.userinfo.options.@gender");
 
         logger.info("Actual gender in profile: {}", actualGender);
